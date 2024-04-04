@@ -63,6 +63,11 @@ class BoardController: NSObject,
   private func applyNumLettersSettings(with settings: [String: Any]) {
     // START YOUR CODE HERE
     // ...
+      guard let numLetter = settings[kNumLettersKey] as? Int else{
+          assertionFailure("Expecting Int, but got nil")
+          return
+      }
+      numItemsPerRow = numLetter
     // END YOUR CODE HERE
   }
   
