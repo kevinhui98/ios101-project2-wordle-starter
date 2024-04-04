@@ -80,6 +80,11 @@ class BoardController: NSObject,
   private func applyNumGuessesSettings(with settings: [String: Any]) {
     // START YOUR CODE HERE
     // ...
+      guard let numGuess = settings[kNumGuessesKey] as? Int else{
+          assertionFailure("Expecting Int, but got nil")
+          return
+      }
+      numRows = numGuess
     // END YOUR CODE HERE
   }
   
