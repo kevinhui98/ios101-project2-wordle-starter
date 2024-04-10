@@ -63,6 +63,11 @@ class BoardController: NSObject,
   private func applyNumLettersSettings(with settings: [String: Any]) {
     // START YOUR CODE HERE
     // ...
+      guard let numLetter = settings[kNumLettersKey] as? Int else{
+          assertionFailure("Expecting Int, but got nil")
+          return
+      }
+      numItemsPerRow = numLetter
     // END YOUR CODE HERE
   }
   
@@ -75,6 +80,11 @@ class BoardController: NSObject,
   private func applyNumGuessesSettings(with settings: [String: Any]) {
     // START YOUR CODE HERE
     // ...
+      guard let numGuess = settings[kNumGuessesKey] as? Int else{
+          assertionFailure("Expecting Int, but got nil")
+          return
+      }
+      numRows = numGuess
     // END YOUR CODE HERE
   }
   
@@ -88,6 +98,10 @@ class BoardController: NSObject,
   private func applyThemeSettings(with settings: [String: Any]) {
     // START YOUR CODE HERE
     // ...
+      if let rawTheme = settings[kWordThemeKey] as? String, // same as we've been doing before
+      let theme = WordTheme(rawValue: rawTheme) {
+          goalWord = WordGenerator.generateGoalWord(with: theme)
+      }
     // END YOUR CODE HERE
   }
   
@@ -98,6 +112,12 @@ class BoardController: NSObject,
   private func applyIsAlienWordleSettings(with settings: [String: Any]) {
     // START YOUR CODE HERE
     // ...
-    // START YOUR CODE HERE
+      guard let alienWordle = settings[kIsAlienWordleKey] as? Bool else{
+          assertionFailure("Expect bool, but got nil")
+          return
+      }
+      isAlienWordle = alienWordle
+      
+    // END YOUR CODE HERE
   }
 }
